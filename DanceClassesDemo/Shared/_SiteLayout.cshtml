@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>DanceClassesDemo - @Page.Title</title>
+        @RenderSection("head", required: false)
+    <link rel="stylesheet" type="text/css" href="~/Shared/mainStyle.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="content-wrap">
+            <header>
+                <h2><a href="~/Default.cshtml" rel="CLICK ME">HEADER element.. </a></h2>
+                <h3>Learning the basics. Paso a paso.</h3>
+            </header>
+
+            <div class="content">@RenderBody()</div>
+
+            <footer>
+                <b>FOOTER element..</b>
+                <br />DateTime.Now on server: @DateTime.Now
+            </footer>
+        </div>
+    </body>
+</html>

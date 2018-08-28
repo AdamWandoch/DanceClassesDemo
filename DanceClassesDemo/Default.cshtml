@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Shared/_SiteLayout.cshtml";
+    Page.Title = "Home";
+    var records = MainPostHandler.GetEntries();
+    var grid = new WebGrid(records);
+}
+
+<p><h3>Please fill in the form below</h3></p>
+
+<form name="post" method="post" action="~/admin/post.ashx">
+    <p>Your Email: <br /><input type="text" name="entryEmail" style="width:220px"/></p>
+    <p>Entry title: <br /><input type="text" name="entryTitle" style="width:220px" /></p>
+    <p>Entry description: <br /><textarea name="entryDescription" style="width:220px"></textarea></p>
+    <p><input type="submit" name="postSubmit" value="Submit" style="height:50px; width:220px"/></p>
+</form>
+
+<h3>Records in DanceClassesDB.Entries:</h3>
+
+@grid.GetHtml(
+    columns: grid.Columns(
+             grid.Column("Email"),
+             grid.Column("Title"),
+             grid.Column("Description"),
+             grid.Column("DateCreated", header: "Date Created")))

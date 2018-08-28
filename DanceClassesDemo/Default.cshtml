@@ -14,11 +14,13 @@
     <p><input type="submit" name="postSubmit" value="Submit" style="height:50px; width:220px"/></p>
 </form>
 
-<h3>Records in DanceClassesDB.Entries:</h3>
+<h3>Records in <br />DanceClassesDB.Entries:</h3>
 
-@grid.GetHtml(
-    columns: grid.Columns(
-             grid.Column("Email"),
-             grid.Column("Title"),
-             grid.Column("Description"),
-             grid.Column("DateCreated", header: "Date Created")))
+<div class="grid">
+    @grid.GetHtml(
+        columns: grid.Columns(
+                 grid.Column("Email"),
+                 grid.Column("Title"),
+                 grid.Column("Description"),
+                 grid.Column("DateCreated", header: "Created")))
+</div>

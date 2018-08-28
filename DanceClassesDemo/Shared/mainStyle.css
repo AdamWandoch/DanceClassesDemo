@@ -54,6 +54,10 @@ header:hover{
     border: solid 2px white;
 }
 
+.grid {
+    font-size: 12px;
+}
+
 footer {
     background-color: dimgrey;
     padding: 10px;

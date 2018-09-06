@@ -5,23 +5,33 @@
     var grid = new WebGrid(records);
 }
 
-<p><h3>Please fill in the form below</h3></p>
+<div class="centered">
+    <h1 class="mt-5">MAIN element.. </h1>
+    <p class="lead">Learning the basics. Paso a paso.</p>
 
-<form name="post" method="post" action="~/post.ashx">
-    <p>Your Email: <br /><input type="text" name="entryEmail" style="width:220px" /></p>
-    <p>Entry title: <br /><input type="text" name="entryTitle" style="width:220px" /></p>
-    <p>Entry description: <br /><textarea name="entryDescription" style="width:220px"></textarea></p>
-    <p><input type="submit" value="Submit" style="height:50px; width:220px" /></p>
-</form>
+    <p><h3>Please fill in the form below</h3></p>
 
-<h3>Records in <br />DanceClassesDB.Entries:</h3>
+    <form name="post" method="post" action="~/post.ashx">
+        <p>Your Email: <br /><input type="text" name="entryEmail" style="width:220px" /></p>
+        <p>Entry title: <br /><input type="text" name="entryTitle" style="width:220px" /></p>
+        <p>Entry description: <br /><textarea name="entryDescription" style="width:220px"></textarea></p>
+        <p><input type="submit" value="Submit" style="height:50px; width:220px" /></p>
+    </form>
 
-<div class="grid">
+    <h3>Records in <br />DanceClassesDB.Entries:</h3>
+
     @grid.GetHtml(
+    tableStyle: "grid",
     columns: grid.Columns(
              grid.Column("Email"),
              grid.Column("Title"),
              grid.Column("Description"),
              grid.Column("DateCreated", header: "Created")))
 
+@{ 
+    for (int i = 0; i < 50; i++)
+    {
+        <p>Some text..</p>
+    }
+}
 </div>

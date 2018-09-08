@@ -8,8 +8,8 @@ header {
 }
 
 #mainNav {
-    opacity: 0.95;
-    transition: 0.5s;
+    opacity: 0.85;
+    transition: 0.2s;
 }
 
 #mainNav:hover {
@@ -18,7 +18,7 @@ header {
 
 body {
     /* Margin bottom by footer height */
-    margin-top: 80px;
+    margin-top: 50px;
     margin-bottom: 40px;
     background-image: url('bg_main.png');
     background-attachment:fixed;
@@ -31,6 +31,15 @@ body {
 
 .grid {
     margin: auto;
+    background-color: dimgrey;
+    border: 1px solid white;
+    transition: 0.2s;
+    color: white;
+}
+
+.grid:hover {
+    box-shadow: 0 0 10px 5px rgba(255,255,255,0.5);
+    border-color: blueviolet;
 }
 
 .footer {
@@ -43,5 +52,25 @@ body {
     background-color: #424242;
     text-align: center;
     color: red;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: lightgrey;
+    text-decoration: underline;
+}
+
+#submit {
+    transition: 0.2s;
+    border: solid 1px white;
+}
+
+#submit:hover {
+    box-shadow: 0 0 10px 5px rgba(255,255,255,0.5);
+    border-color: blueviolet;
 }
 

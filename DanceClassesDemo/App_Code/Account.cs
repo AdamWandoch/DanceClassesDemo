@@ -8,7 +8,7 @@ using WebMatrix.Data;
 
 /// <summary>
 /// Summary description for Account
-/// 
+/// this is a comment added in accountsFeature branch, shouldn't see it in master!
 /// </summary>
 public class Account
 {

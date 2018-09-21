@@ -29,8 +29,6 @@ public class Account
         }
     }
 
-    // admin/account/edit/username
-
     public static string Username
     {
         get

@@ -16,7 +16,7 @@ public class AccountRepository
     {
         using (var db = Database.Open(_connectionString))
         {
-            var sql = "SELECT * FROM Users WHERE Id = @0";
+            var sql = "SELECT * FROM Accounts WHERE AccountID = @0";
             return db.QuerySingle(sql, id);
         }
     }
@@ -25,7 +25,7 @@ public class AccountRepository
     {
         using (var db = Database.Open(_connectionString))
         {
-            var sql = "SELECT * FROM Users WHERE Username = @0";
+            var sql = "SELECT * FROM Accounts WHERE Username = @0";
             return db.QuerySingle(sql, username);
         }
     }
@@ -34,7 +34,7 @@ public class AccountRepository
     {
         using (var db = Database.Open(_connectionString))
         {
-            var sql = "SELECT * FROM Users";
+            var sql = "SELECT * FROM Accounts";
 
             if (!string.IsNullOrEmpty(where))
             {
@@ -54,19 +54,19 @@ public class AccountRepository
     {
         using (var db = Database.Open(_connectionString))
         {
-            var selectSql = "SELECT * FROM Users WHERE Username = @0";
+            var selectSql = "SELECT * FROM Accounts WHERE Username = @0";
             var user = db.QuerySingle(selectSql, username);
             if (user != null)
             {
                 throw new Exception("User already exist!");
             }
-            var sql = "INSERT INTO Users (Username, Password, Email) " +
+            var sql = "INSERT INTO Accounts (Username, Password, Email) " +
                 "VALUES (@0, @1, @2)";
             db.Execute(sql, username, password, email);
 
             user = db.QuerySingle(selectSql, username);
 
-            AddRoles(user.Id, roles, db);
+            AddRoles(user.AccountID, roles, db);
         }
     }
 
@@ -74,14 +74,14 @@ public class AccountRepository
     {
         using (var db = Database.Open(_connectionString))
         {
-            var sql = "UPDATE Users SET Username = @0, Password = @1, " +
-                "Email = @2 WHERE Id = @3";
+            var sql = "UPDATE Accounts SET Username = @0, Password = @1, " +
+                "Email = @2 WHERE AccountID = @3";
 
             db.Execute(sql, username, password, email, id);
 
-            DeleteRoles(id, db);
+            //DeleteRoles(id, db);
 
-            AddRoles(id, roles, db);
+            //AddRoles(id, roles, db);
         }
     }
 
@@ -91,10 +91,10 @@ public class AccountRepository
         if (user == null) { return; }
         using (var db = Database.Open(_connectionString))
         {
-            var sql = "DELETE FROM Users WHERE Username = @0";
+            var sql = "DELETE FROM Accounts WHERE Username = @0";
             db.Execute(sql, username);
-            sql = "DELETE FROM UsersRolesMap WHERE UserId = @0";
-            db.Execute(sql, user.Id);
+            sql = "DELETE FROM AccountsRolesMap WHERE UserId = @0";
+            db.Execute(sql, user.AccountID);
         }
     }
 
@@ -104,7 +104,7 @@ public class AccountRepository
         {
             return;
         }
-        var sql = "INSERT INTO UsersRolesMap (UserId, RoleId) VALUES (@0, @1)";
+        var sql = "INSERT INTO AccountsRolesMap (AccountID, RoleId) VALUES (@0, @1)";
 
         foreach (var role in roles)
         {
@@ -114,7 +114,7 @@ public class AccountRepository
 
     private static void DeleteRoles(int id, Database db)
     {
-        var sql = "DELETE FROM UsersRolesMap WHERE UserId = @0";
+        var sql = "DELETE FROM AccountsRolesMap WHERE AccountID = @0";
         db.Execute(sql, id);
     }
 }

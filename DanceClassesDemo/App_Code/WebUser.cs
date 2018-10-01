@@ -83,7 +83,7 @@ public class WebUser
 
     private static void SetupSession(dynamic user)
     {
-        Session["userid"] = (int)user.Id;
+        Session["userid"] = (int)user.AccountID;
         Session["username"] = (string)user.Username;
         Session["email"] = (string)user.Email;
     }

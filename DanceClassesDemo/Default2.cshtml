@@ -5,9 +5,9 @@
     var grid = new WebGrid(records);
 
     var greeting = "No one logged in..";
-    if (!string.IsNullOrEmpty(Account.Current.Username))
+    if (WebUser.IsAuthenticated)
     {
-        greeting = $"Hello {Account.Current.Username}!";
+        greeting = $"Hello {WebUser.Username}!";
     }
 }
 

@@ -24,10 +24,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="~/Login">My Account</a>
                     </li>
-                    @if (!string.IsNullOrEmpty(Account.Current.Username))
+                    @if (WebUser.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="~/Logout">Logout</a>
+                            <a class="nav-link" href="~/Logout">Logout (@WebUser.Username)</a>
                         </li>
                     }
                 </ul>

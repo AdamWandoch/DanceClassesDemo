@@ -12,7 +12,7 @@
 
         if (!AccountRepository.GetAll().Contains(username))
         {
-            AccountRepository.Add(username, password, email);
+            AccountRepository.Add(username, Crypto.HashPassword(password), email);
             Response.Redirect("~/Login");
         }
 

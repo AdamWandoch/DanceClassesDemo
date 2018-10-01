@@ -50,7 +50,7 @@ public class AccountRepository
         }
     }
 
-    public static void Add(string username, string password, string email, IEnumerable<int> roles)
+    public static void Add(string username, string password, string email/*, IEnumerable<int> roles*/)
     {
         using (var db = Database.Open(_connectionString))
         {
@@ -66,7 +66,7 @@ public class AccountRepository
 
             user = db.QuerySingle(selectSql, username);
 
-            AddRoles(user.AccountID, roles, db);
+            //AddRoles(user.AccountID, roles, db);
         }
     }
 

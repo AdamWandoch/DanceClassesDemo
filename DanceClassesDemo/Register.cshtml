@@ -1,0 +1,40 @@
+﻿@{
+    Page.Title = "Register!";
+    Layout = "~/Shared/_SiteLayout.cshtml";
+
+    var message = string.Empty;
+
+    if (IsPost)
+    {
+        var username = Request.Form["username"];
+        var password = Request.Form["password"];
+        var email = Request.Form["email"];
+
+        if (!AccountRepository.GetAll().Contains(username))
+        {
+            AccountRepository.Add(username, password, email);
+            Response.Redirect("~/Login");
+        }
+
+        message = "Username already taken!";
+    }
+}
+
+<div class="centered">
+    <div class="error">@message</div>
+    <form name="login" method="post">
+        <p>
+            <label for="username">Username:</label><br />
+            <input type="text" id="username" name="username" />
+        </p>
+        <p>
+            <label for="email">Email:</label><br />
+            <input type="text" id="email" name="email" />
+        </p>
+        <p>
+            <label for="password">Password:</label><br />
+            <input type="password" id="password" name="password" />
+        </p>
+        <p><input type="submit" value="Register" /></p>
+    </form>
+</div>

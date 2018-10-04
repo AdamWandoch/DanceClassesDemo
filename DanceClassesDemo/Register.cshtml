@@ -1,5 +1,5 @@
 ﻿@{
-    Page.Title = "Register!";
+    Page.Title = "Registration";
     Layout = "~/Shared/_SiteLayout.cshtml";
 
     var message = string.Empty;
@@ -10,18 +10,28 @@
         var password = Request.Form["password"];
         var email = Request.Form["email"];
 
-        if (!AccountRepository.GetAll().Contains(username))
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
         {
-            AccountRepository.Add(username, Crypto.HashPassword(password), email);
-            Response.Redirect("~/Login");
+            message = "None of the fields can be empty!";
+        }
+        else
+        {
+            try
+            {
+                AccountRepository.Add(username, Crypto.HashPassword(password), email);
+                Response.Redirect("~/Login");
+            }
+            catch
+            {
+                message = "Username already taken!";
+            }
         }
 
-        message = "Username already taken!";
+
     }
 }
 
 <div class="centered">
-    <div class="error">@message</div>
     <form name="login" method="post">
         <p>
             <label for="username">Username:</label><br />
@@ -36,5 +46,6 @@
             <input type="password" id="password" name="password" />
         </p>
         <p><input type="submit" value="Register" /></p>
+        <div class="error">@message</div>
     </form>
 </div>
